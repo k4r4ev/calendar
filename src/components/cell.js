@@ -2,13 +2,32 @@ import React from 'react'
 
 class Cell extends React.Component {
     constructor (props) {
-        super(props);
+        super(props)
+        if (this.props.month !== this.props.cell.date.getMonth()) {
+            this.className = 'day other-month'
+        } else {
+            this.className = 'day'
+        }
+        if (this.props.cell.task !== '') {
+            this.event = <div className="event">
+                <div className="event-desc">
+                    {this.props.cell.task}
+                </div>
+                <div className="event-time">
+                    6:00pm to 8:30pm
+                </div>
+            </div>
+        } else {
+            this.event = ''
+        }
     }
 
     render () {
         return (
-            <div className="table">
-            </div>
+            <td className={this.className}>
+                <div className="date">{this.props.cell.date.getDate()}</div>
+                {this.event}
+            </td>
         )
     }
 }
