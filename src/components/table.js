@@ -69,145 +69,144 @@ class Table extends React.Component {
         let currentDay = this.date.getDay()
         this.page.push({
             date: new Date('December 30, 2019 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('December 31, 2019 01:00:00'),
-            task: 'Conference Call'
+            text: 'Conference Call'
         })
         this.page.push({
             date: new Date('January 1, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 2, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 3, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 4, 2020 01:00:00'),
-            task: 'Board Meeting'
+            text: 'Board Meeting'
         })
         this.page.push({
             date: new Date('January 5, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 6, 2020 01:00:00'),
-            task: 'Board Meeting'
+            text: 'Board Meeting'
         })
         this.page.push({
             date: new Date('January 7, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 8, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 9, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 10, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 11, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 12, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 13, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 14, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 15, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 16, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 17, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 18, 2020 01:00:00'),
-            task: 'Board Meeting'
+            text: 'Board Meeting'
         })
         this.page.push({
             date: new Date('January 19, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 20, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 21, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 22, 2020 01:00:00'),
-            task: 'Career development @ Community College room #402'
+            text: 'Career development @ Community College room #402'
         })
         this.page.push({
             date: new Date('January 23, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 24, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 25, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 26, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 27, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 28, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 29, 2020 01:00:00'),
-            task: 'Group Project meetup'
+            text: 'Group Project meetup'
         })
         this.page.push({
             date: new Date('January 30, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('January 31, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('February 1, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
         this.page.push({
             date: new Date('February 2, 2020 01:00:00'),
-            task: ''
+            text: ''
         })
-        console.log(this.page)
     }
 
     render () {
@@ -221,7 +220,8 @@ class Table extends React.Component {
                         January 2020
                         <IconButton aria-label="add">
                             <ArrowRightIcon className="blackIcon" fontSize="large"/>
-                        </IconButton></caption>
+                        </IconButton>
+                    </caption>
                     <tr className="weekdays">
                         <th scope="col">Monday</th>
                         <th scope="col">Tuesday</th>

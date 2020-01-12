@@ -8,10 +8,10 @@ class Cell extends React.Component {
         } else {
             this.className = 'day'
         }
-        if (this.props.cell.task !== '') {
+        if (this.props.cell.text !== '') {
             this.event = <div className="event">
                 <div className="event-desc">
-                    {this.props.cell.task}
+                    {this.props.cell.text}
                 </div>
                 <div className="event-time">
                     6:00pm to 8:30pm
