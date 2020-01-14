@@ -1,6 +1,5 @@
 import React from 'react'
 import Modal from './modal'
-import { createEvent } from '../actions/actions'
 import { connect } from 'react-redux'
 
 class Cell extends React.Component {
@@ -32,7 +31,7 @@ class Cell extends React.Component {
     }
 
     showModal = () => {
-        this.setState({ modal: <Modal hideModal={this.hideModal}/> })
+        this.setState({ modal: <Modal hide={this.hideModal} date={this.props.cell.date}/> })
         console.log(this.state.modal)
     }
 
@@ -43,8 +42,8 @@ class Cell extends React.Component {
 
     render () {
         return (
-            <td className={this.getClass()} onClick={this.showModal}>
-                <div className="date">{this.props.cell.date.getDate()}</div>
+            <td className={this.getClass()}>
+                <div className="date" onClick={this.showModal}>{this.props.cell.date.getDate()}</div>
                 {this.event}
                 {this.state.modal}
             </td>

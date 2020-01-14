@@ -80,10 +80,6 @@ caption {
     flex-direction: column;
 }
 
-.calendar td:hover {
-    cursor: pointer;
-}
-
 .calendar .days li:hover {
     background: #d3d3d3;
 }
@@ -98,6 +94,10 @@ caption {
     border-radius: 50%;
     flex: 0 0 auto;
     align-self: flex-end;
+}
+
+.calendar .date:hover {
+    cursor: pointer;
 }
 
 .calendar .event {
