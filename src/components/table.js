@@ -3,209 +3,47 @@ import IconButton from '@material-ui/core/IconButton'
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 import Cell from './cell'
+import Month from '../classes/month'
+import { connect } from 'react-redux'
+import { createEvent } from '../actions/actions'
+import Modal from './modal'
 
 class Table extends React.Component {
     constructor (props) {
         super(props)
-        this.date = new Date()
-        this.page = []
-        this.months = [{
-            id: 0,
-            name: 'january',
-            length: 31
-        }, {
-            id: 1,
-            name: 'february',
-            length: 28
-        }, {
-            id: 2,
-            name: 'march',
-            length: 31
-        }, {
-            id: 3,
-            name: 'april',
-            length: 30
-        }, {
-            id: 4,
-            name: 'may',
-            length: 31
-        }, {
-            id: 5,
-            name: 'june',
-            length: 30
-        }, {
-            id: 6,
-            name: 'july',
-            length: 31
-        }, {
-            id: 7,
-            name: 'august',
-            length: 31
-        }, {
-            id: 8,
-            name: 'september',
-            length: 30
-        }, {
-            id: 9,
-            name: 'october',
-            length: 31
-        }, {
-            id: 10,
-            name: 'november',
-            length: 30
-        }, {
-            id: 11,
-            name: 'december',
-            length: 31
-        }]
         this.state = {
-            month: []
+            date: new Date(),
+            month: new Month(new Date())
         }
-        this.preparePage(new Date())
+        this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+            'October', 'November', 'December']
+        this.month = new Month(this.state.date)
+        this.title = this.months[this.state.date.getMonth()] + ' ' + this.state.date.getFullYear()
     }
 
-    preparePage = () => {
-        let currentMonth = this.date.getMonth()
-        let currentDay = this.date.getDay()
-        this.page.push({
-            date: new Date('December 30, 2019 01:00:00'),
-            text: ''
+    nextMonth = () => {
+        let currentDate
+        if (this.state.date.getMonth() === 11) {
+            currentDate = new Date((this.state.date.getFullYear()), (this.state.date.getMonth() + 1), 1)
+        } else {
+            currentDate = new Date((this.state.date.getFullYear()), (this.state.date.getMonth() + 1), 1)
+        }
+        this.setState({
+            date: new Date(currentDate),
+            month: new Month(new Date(currentDate))
         })
-        this.page.push({
-            date: new Date('December 31, 2019 01:00:00'),
-            text: 'Conference Call'
-        })
-        this.page.push({
-            date: new Date('January 1, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 2, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 3, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 4, 2020 01:00:00'),
-            text: 'Board Meeting'
-        })
-        this.page.push({
-            date: new Date('January 5, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 6, 2020 01:00:00'),
-            text: 'Board Meeting'
-        })
-        this.page.push({
-            date: new Date('January 7, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 8, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 9, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 10, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 11, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 12, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 13, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 14, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 15, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 16, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 17, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 18, 2020 01:00:00'),
-            text: 'Board Meeting'
-        })
-        this.page.push({
-            date: new Date('January 19, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 20, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 21, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 22, 2020 01:00:00'),
-            text: 'Career development @ Community College room #402'
-        })
-        this.page.push({
-            date: new Date('January 23, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 24, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 25, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 26, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 27, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 28, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 29, 2020 01:00:00'),
-            text: 'Group Project meetup'
-        })
-        this.page.push({
-            date: new Date('January 30, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('January 31, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('February 1, 2020 01:00:00'),
-            text: ''
-        })
-        this.page.push({
-            date: new Date('February 2, 2020 01:00:00'),
-            text: ''
+    }
+
+    previousMonth = () => {
+        let currentDate
+        if (this.state.date.getMonth() === 0) {
+            currentDate = new Date((this.state.date.getFullYear()), (this.state.date.getMonth() - 1), 1)
+        } else {
+            currentDate = new Date((this.state.date.getFullYear()), (this.state.date.getMonth() - 1), 1)
+        }
+        this.setState({
+            date: new Date(currentDate),
+            month: new Month(new Date(currentDate))
         })
     }
 
@@ -215,11 +53,11 @@ class Table extends React.Component {
                 <table className="calendar">
                     <caption>
                         <IconButton aria-label="add">
-                            <ArrowLeftIcon className="blackIcon" fontSize="large"/>
+                            <ArrowLeftIcon className="blackIcon" onClick={this.previousMonth} fontSize="large"/>
                         </IconButton>
-                        January 2020
+                        {this.months[this.state.date.getMonth()] + ' ' + this.state.date.getFullYear()}
                         <IconButton aria-label="add">
-                            <ArrowRightIcon className="blackIcon" fontSize="large"/>
+                            <ArrowRightIcon className="blackIcon" onClick={this.nextMonth} fontSize="large"/>
                         </IconButton>
                     </caption>
                     <tr className="weekdays">
@@ -232,19 +70,28 @@ class Table extends React.Component {
                         <th scope="col">Sunday</th>
                     </tr>
                     <tr>
-                        {this.page.slice(0, 7).map((current, index) => <Cell cell={current} month={0}/>)}
+                        {this.state.month.days.slice(0, 7).map((current, index) => <Cell cell={current}
+                                                                                         month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
-                        {this.page.slice(7, 14).map((current, index) => <Cell cell={current} month={0}/>)}
+                        {this.state.month.days.slice(7, 14).map((current, index) => <Cell cell={current}
+                                                                                          month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
-                        {this.page.slice(14, 21).map((current, index) => <Cell cell={current} month={0}/>)}
+                        {this.state.month.days.slice(14, 21).map((current, index) => <Cell cell={current}
+                                                                                           month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
-                        {this.page.slice(21, 28).map((current, index) => <Cell cell={current} month={0}/>)}
+                        {this.state.month.days.slice(21, 28).map((current, index) => <Cell cell={current}
+                                                                                           month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
-                        {this.page.slice(28, 35).map((current, index) => <Cell cell={current} month={0}/>)}
+                        {this.state.month.days.slice(28, 35).map((current, index) => <Cell cell={current}
+                                                                                           month={this.state.date.getMonth()}/>)}
+                    </tr>
+                    <tr>
+                        {this.state.month.days.slice(35, 42).map((current, index) => <Cell cell={current}
+                                                                                           month={this.state.date.getMonth()}/>)}
                     </tr>
                 </table>
             </div>
@@ -252,4 +99,16 @@ class Table extends React.Component {
     }
 }
 
-export default Table
+const mapStateToProps = store => {
+    return {
+        events: store.events
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        createEvent: event => dispatch(createEvent(event))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Table)
