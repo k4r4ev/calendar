@@ -8,12 +8,12 @@ import './stylesheets/app.css'
 class App extends React.Component {
     render () {
         return (
-            <div className="App">
-                <Provider store={store}>
+            <Provider store={store}>
+                <div className="App">
                     <Header/>
                     <Table/>
-                </Provider>
-            </div>
+                </div>
+            </Provider>
         )
     }
 }

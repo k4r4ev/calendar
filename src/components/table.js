@@ -6,7 +6,6 @@ import Cell from './cell'
 import Month from '../classes/month'
 import { connect } from 'react-redux'
 import { createEvent } from '../actions/actions'
-import Modal from './modal'
 
 class Table extends React.Component {
     constructor (props) {
@@ -19,6 +18,14 @@ class Table extends React.Component {
             'October', 'November', 'December']
         this.month = new Month(this.state.date)
         this.title = this.months[this.state.date.getMonth()] + ' ' + this.state.date.getFullYear()
+        this.props.events.filter((event) => {
+            this.month.days.map(m => {
+                if (new Date(event.date).toDateString() === m.date.toDateString()) {
+                    console.log(new Date(event.date))
+                    console.log(m.date)
+                }
+            })
+        })
     }
 
     nextMonth = () => {
@@ -71,26 +78,38 @@ class Table extends React.Component {
                     </tr>
                     <tr>
                         {this.state.month.days.slice(0, 7).map((current, index) => <Cell cell={current}
+                                                                                         event={this.props.events.filter(
+                                                                                             (event) => (new Date(JSON.parse(event.date)).toDateString() === current.date.toDateString()))}
                                                                                          month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
                         {this.state.month.days.slice(7, 14).map((current, index) => <Cell cell={current}
+                                                                                          event={this.props.events.filter(
+                                                                                              (event) => new Date(JSON.parse(event.date)).toDateString() === current.date.toDateString())}
                                                                                           month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
                         {this.state.month.days.slice(14, 21).map((current, index) => <Cell cell={current}
+                                                                                           event={this.props.events.filter(
+                                                                                               (event) => new Date(JSON.parse(event.date)).toDateString() === current.date.toDateString())}
                                                                                            month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
                         {this.state.month.days.slice(21, 28).map((current, index) => <Cell cell={current}
+                                                                                           event={this.props.events.filter(
+                                                                                               (event) => new Date(JSON.parse(event.date)).toDateString() === current.date.toDateString())}
                                                                                            month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
                         {this.state.month.days.slice(28, 35).map((current, index) => <Cell cell={current}
+                                                                                           event={this.props.events.filter(
+                                                                                               (event) => new Date(JSON.parse(event.date)).toDateString() === current.date.toDateString())}
                                                                                            month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
                         {this.state.month.days.slice(35, 42).map((current, index) => <Cell cell={current}
+                                                                                           event={this.props.events.filter(
+                                                                                               (event) => new Date(JSON.parse(event.date)).toDateString() === current.date.toDateString())}
                                                                                            month={this.state.date.getMonth()}/>)}
                     </tr>
                 </table>

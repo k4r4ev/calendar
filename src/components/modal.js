@@ -10,11 +10,14 @@ import { connect } from 'react-redux'
 class Modal extends React.Component {
     constructor (props) {
         super(props)
+        this.state = {
+            text: ''
+        }
     }
 
     save = () => {
-        createEvent({
-            date: this.props.date,
+        this.props.createEvent({
+            date: JSON.stringify(new Date(this.props.date)),
             text: this.state.text
         })
         this.props.hide()
@@ -28,16 +31,8 @@ class Modal extends React.Component {
         return (
             <div className="modal">
                 <TextField id="outlined-basic" label="Title" variant="outlined" size="small"/>
-                <TextField
-                    id="outlined-multiline-static"
-                    label="Text"
-                    multiline
-                    rows="4"
-                    variant="filled"
-                    size="large"
-                    className="textarea"
-                    onChange={this.handleChangeEventText}
-                />
+                <TextField id="outlined-multiline-static" label="Text" multiline rows="4" variant="filled" size="large"
+                           className="textarea" onChange={this.handleChangeEventText}/>
                 <div>
                     <IconButton aria-label="check" color="primary">
                         <CheckIcon fontSize="large" className="whiteIcon" onClick={this.save}/>
@@ -59,7 +54,7 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        createEvent: event => dispatch(createEvent(event))
+        createEvent: (event) => dispatch(createEvent(event))
     }
 }
 

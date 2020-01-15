@@ -6,19 +6,18 @@ class Cell extends React.Component {
     constructor (props) {
         super(props)
         this.state = {
-            modal: ''
+            modal: '',
+            event: this.getEvent()
         }
-        if (this.props.cell.text !== '') {
-            this.event = <div className="event">
-                <div className="event-desc">
-                    {this.props.cell.text}
+    }
+
+    getEvent = () => {
+            if (this.props.event.length !== 0) {
+                return <div className="event">
+                    <div className="event-desc">
+                        {this.props.event[0].text}
+                    </div>
                 </div>
-                <div className="event-time">
-                    6:00pm to 8:30pm
-                </div>
-            </div>
-        } else {
-            this.event = ''
         }
     }
 
@@ -31,20 +30,18 @@ class Cell extends React.Component {
     }
 
     showModal = () => {
-        this.setState({ modal: <Modal hide={this.hideModal} date={this.props.cell.date}/> })
-        console.log(this.state.modal)
+        this.setState({ modal: <Modal hide={this.hideModal} date={this.props.cell.date} set={this.setEvent}/> })
     }
 
     hideModal = () => {
         this.setState({ modal: '' })
-        console.log(this.state.modal)
     }
 
     render () {
         return (
             <td className={this.getClass()}>
                 <div className="date" onClick={this.showModal}>{this.props.cell.date.getDate()}</div>
-                {this.event}
+                {this.state.event}
                 {this.state.modal}
             </td>
         )

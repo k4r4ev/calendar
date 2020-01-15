@@ -1,9 +1,9 @@
 import { CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT } from '../actions/actions'
 
-const initialState = (localStorage.length === 0) ? {
+export const initialState = (localStorage.length === 0) ? {
     events: [{
-        date: new Date(),
-        text: ''
+        date: JSON.stringify(new Date()),
+        text: 'Create first event!'
     }]
 } : (JSON.parse(localStorage.getItem('storage')))
 
