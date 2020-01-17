@@ -77,39 +77,28 @@ class Table extends React.Component {
                         <th scope="col">Sunday</th>
                     </tr>
                     <tr>
-                        {this.state.month.days.slice(0, 7).map((current, index) => <Cell cell={current}
-                                                                                         event={this.props.events.filter(
-                                                                                             (event) => (new Date(JSON.parse(event.date)).toDateString() === current.date.toDateString()))}
-                                                                                         month={this.state.date.getMonth()}/>)}
+                        {console.log(this.props.events)}
+                        {this.state.month.days.slice(0, 7).map((current) => <Cell cell={current}
+                                                                                  month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
                         {this.state.month.days.slice(7, 14).map((current, index) => <Cell cell={current}
-                                                                                          event={this.props.events.filter(
-                                                                                              (event) => new Date(JSON.parse(event.date)).toDateString() === current.date.toDateString())}
                                                                                           month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
                         {this.state.month.days.slice(14, 21).map((current, index) => <Cell cell={current}
-                                                                                           event={this.props.events.filter(
-                                                                                               (event) => new Date(JSON.parse(event.date)).toDateString() === current.date.toDateString())}
                                                                                            month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
                         {this.state.month.days.slice(21, 28).map((current, index) => <Cell cell={current}
-                                                                                           event={this.props.events.filter(
-                                                                                               (event) => new Date(JSON.parse(event.date)).toDateString() === current.date.toDateString())}
                                                                                            month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
                         {this.state.month.days.slice(28, 35).map((current, index) => <Cell cell={current}
-                                                                                           event={this.props.events.filter(
-                                                                                               (event) => new Date(JSON.parse(event.date)).toDateString() === current.date.toDateString())}
                                                                                            month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
                         {this.state.month.days.slice(35, 42).map((current, index) => <Cell cell={current}
-                                                                                           event={this.props.events.filter(
-                                                                                               (event) => new Date(JSON.parse(event.date)).toDateString() === current.date.toDateString())}
                                                                                            month={this.state.date.getMonth()}/>)}
                     </tr>
                 </table>

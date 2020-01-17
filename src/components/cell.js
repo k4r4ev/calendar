@@ -12,12 +12,13 @@ class Cell extends React.Component {
     }
 
     getEvent = () => {
-            if (this.props.event.length !== 0) {
-                return <div className="event">
-                    <div className="event-desc">
-                        {this.props.event[0].text}
-                    </div>
-                </div>
+        let event = (this.props.events.filter(
+            (event) => new Date(JSON.parse(event.date)).toDateString() === this.props.cell.date.toDateString()))
+        console.log(event)
+        if (event.length === 0) {
+            return ''
+        } else {
+            return event[0]
         }
     }
 
@@ -30,7 +31,7 @@ class Cell extends React.Component {
     }
 
     showModal = () => {
-        this.setState({ modal: <Modal hide={this.hideModal} date={this.props.cell.date} set={this.setEvent}/> })
+        this.setState({ modal: <Modal hide={this.hideModal} date={this.props.cell.date}/> })
     }
 
     hideModal = () => {
@@ -41,7 +42,7 @@ class Cell extends React.Component {
         return (
             <td className={this.getClass()}>
                 <div className="date" onClick={this.showModal}>{this.props.cell.date.getDate()}</div>
-                {this.state.event}
+                {this.props.events[this.props.events.length].text}
                 {this.state.modal}
             </td>
         )
