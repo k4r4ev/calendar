@@ -42,7 +42,7 @@ class Cell extends React.Component {
         return (
             <td className={this.getClass()}>
                 <div className="date" onClick={this.showModal}>{this.props.cell.date.getDate()}</div>
-                {this.props.events[this.props.events.length].text}
+                {this.props.event}
                 {this.state.modal}
             </td>
         )

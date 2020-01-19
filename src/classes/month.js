@@ -30,7 +30,6 @@ class Month {
                 })
             }
         }
-        console.log(this.days)
     }
 }
 

@@ -24,7 +24,7 @@ class Header extends React.Component {
         return (
             <div className="header">
                 <Select className="select" options={options}/>
-                <div>
+                <div className="header__buttons">
                     <IconButton aria-label="add">
                         <AddIcon className="whiteIcon" fontSize="large"/>
                     </IconButton>

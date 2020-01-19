@@ -165,6 +165,10 @@ caption {
     .calendar .date {
         align-self: flex-start;
     }
+
+    .header__buttons {
+        min-width: 118px;
+    }
 }
 
 
