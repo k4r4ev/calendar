@@ -3,8 +3,8 @@ import '../stylesheets/modal.css'
 import IconButton from '@material-ui/core/IconButton'
 import CheckIcon from '@material-ui/icons/Check'
 import CloseIcon from '@material-ui/icons/Close'
-import TextField from '@material-ui/core/TextField'
-import { createEvent } from '../actions/actions'
+import DeleteIcon from '@material-ui/icons/DeleteOutline'
+import { createEvent, deleteEvent, updateEvent } from '../actions/actions'
 import { connect } from 'react-redux'
 
 class Modal extends React.Component {
@@ -13,13 +13,26 @@ class Modal extends React.Component {
         this.state = {
             text: ''
         }
+        this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+            'October', 'November', 'December']
     }
 
     save = () => {
-        this.props.createEvent({
-            date: JSON.stringify(new Date(this.props.date)),
-            text: this.state.text
-        })
+        if (this.props.update === 0) {
+            if (this.state.text.length !== 0) {
+                this.props.createEvent({
+                    date: JSON.stringify(new Date(this.props.date)),
+                    text: this.state.text
+                })
+            }
+        } else {
+            this.props.updateEvent({date: JSON.stringify(new Date(this.props.date)), text: this.state.text})
+        }
+        this.props.hide()
+    }
+
+    delete = () => {
+        this.props.deleteEvent(JSON.stringify(new Date(this.props.date)))
         this.props.hide()
     }
 
@@ -30,12 +43,16 @@ class Modal extends React.Component {
     render () {
         return (
             <div className="modal">
-                <TextField id="outlined-basic" label="Title" variant="outlined" size="small"/>
-                <TextField id="outlined-multiline-static" label="Text" multiline rows="4" variant="filled" size="large"
-                           className="textarea" onChange={this.handleChangeEventText}/>
-                <div>
+                <div className="title">
+                    {this.props.date.getDate() + ' ' + this.months[this.props.date.getMonth()]}
+                </div>
+                <textarea className="textarea" onChange={this.handleChangeEventText}/>
+                <div className="footer">
                     <IconButton aria-label="check" color="primary">
                         <CheckIcon fontSize="large" className="whiteIcon" onClick={this.save}/>
+                    </IconButton>
+                    <IconButton aria-label="delete" color="primary">
+                        <DeleteIcon fontSize="large" className="whiteIcon" onClick={this.delete}/>
                     </IconButton>
                     <IconButton aria-label="close" color="primary">
                         <CloseIcon fontSize="large" className="whiteIcon" onClick={this.props.hide}/>
@@ -54,7 +71,9 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        createEvent: (event) => dispatch(createEvent(event))
+        createEvent: (event) => dispatch(createEvent(event)),
+        updateEvent: (event) => dispatch(updateEvent(event)),
+        deleteEvent: (date) => dispatch(deleteEvent(date))
     }
 }
 

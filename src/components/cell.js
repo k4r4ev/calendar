@@ -1,24 +1,21 @@
 import React from 'react'
 import Modal from './modal'
-import { connect } from 'react-redux'
 
 class Cell extends React.Component {
     constructor (props) {
         super(props)
         this.state = {
-            modal: '',
-            event: this.getEvent()
+            modal: ''
         }
     }
 
     getEvent = () => {
-        let event = (this.props.events.filter(
-            (event) => new Date(JSON.parse(event.date)).toDateString() === this.props.cell.date.toDateString()))
-        console.log(event)
-        if (event.length === 0) {
+        if (this.props.event === '') {
             return ''
         } else {
-            return event[0]
+            return <div className="event">
+                {this.props.event}
+            </div>
         }
     }
 
@@ -30,8 +27,18 @@ class Cell extends React.Component {
         }
     }
 
+    updateOrCreate = () => {
+        if (this.props.event === '') {
+            return 0
+        } else {
+            return 1
+        }
+    }
+
     showModal = () => {
-        this.setState({ modal: <Modal hide={this.hideModal} date={this.props.cell.date}/> })
+        this.setState({
+            modal: <Modal hide={this.hideModal} date={this.props.cell.date} update={this.updateOrCreate()}/>
+        })
     }
 
     hideModal = () => {
@@ -42,17 +49,11 @@ class Cell extends React.Component {
         return (
             <td className={this.getClass()}>
                 <div className="date" onClick={this.showModal}>{this.props.cell.date.getDate()}</div>
-                {this.props.event}
+                {this.getEvent()}
                 {this.state.modal}
             </td>
         )
     }
 }
 
-const mapStateToProps = store => {
-    return {
-        events: store.events
-    }
-}
-
-export default connect(mapStateToProps)(Cell)
+export default Cell

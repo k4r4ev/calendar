@@ -3,24 +3,16 @@ import Select from 'react-select'
 import IconButton from '@material-ui/core/IconButton'
 import AddIcon from '@material-ui/icons/Add'
 import AutoRenewIcon from '@material-ui/icons/Autorenew'
-
-const options = [
-    {
-        value: 'chocolate',
-        label: 'Chocolate'
-    },
-    {
-        value: 'strawberry',
-        label: 'Strawberry'
-    },
-    {
-        value: 'vanilla',
-        label: 'Vanilla'
-    }
-]
+import { createEvent } from '../actions/actions'
+import { connect } from 'react-redux'
 
 class Header extends React.Component {
     render () {
+        const options = []
+        this.props.events.map((event) => options.push({
+            value: event.text,
+            label: event.text
+        }))
         return (
             <div className="header">
                 <Select className="select" options={options}/>
@@ -37,4 +29,16 @@ class Header extends React.Component {
     }
 }
 
-export default Header
+const mapStateToProps = store => {
+    return {
+        events: store.events
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        createEvent: event => dispatch(createEvent(event))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

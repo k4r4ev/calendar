@@ -1,6 +1,6 @@
 export const CREATE_EVENT = 'CREATE_EVENT'
 export const DELETE_EVENT = 'DELETE_EVENT'
-export const UPDATE_EVENT = 'DELETE_EVENT'
+export const UPDATE_EVENT = 'UPDATE_EVENT'
 
 export function createEvent (event) {
     return {
@@ -9,10 +9,10 @@ export function createEvent (event) {
     }
 }
 
-export function updateEvent (date) {
+export function updateEvent (event) {
     return {
         type: UPDATE_EVENT,
-        date
+        event
     }
 }
 

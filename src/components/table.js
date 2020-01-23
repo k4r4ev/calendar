@@ -18,14 +18,6 @@ class Table extends React.Component {
             'October', 'November', 'December']
         this.month = new Month(this.state.date)
         this.title = this.months[this.state.date.getMonth()] + ' ' + this.state.date.getFullYear()
-        this.props.events.filter((event) => {
-            this.month.days.map(m => {
-                if (new Date(event.date).toDateString() === m.date.toDateString()) {
-                    console.log(new Date(event.date))
-                    console.log(m.date)
-                }
-            })
-        })
     }
 
     nextMonth = () => {
@@ -54,18 +46,6 @@ class Table extends React.Component {
         })
     }
 
-    prepareCell = (day, index, event) => {
-        if (index % 7 === 0) {
-            return <tr><Cell cell={day}
-                             event={event}
-                             month={this.state.date.getMonth()}/></tr>
-        } else {
-            return <Cell cell={day}
-                         event={event}
-                         month={this.state.date.getMonth()}/>
-        }
-    }
-
     render () {
         let events = (this.props.events.filter(
             (event) => new Date(JSON.parse(event.date)).getMonth() === this.state.date.getMonth()))
@@ -73,12 +53,11 @@ class Table extends React.Component {
         this.state.month.days.map((currentDay, index) => {
             monthEvents.push('')
             events.map((currentEvent) => {
-                if (new Date(JSON.parse(currentEvent.date)).toDateString() === new Date(currentDay.date).toDateString()) {
+                if (new Date(JSON.parse(currentEvent.date)).toDateString() === currentDay.date.toDateString()) {
                     monthEvents[index] = (currentEvent.text)
                 }
             })
         })
-        console.log(monthEvents)
         let index = 0
         return (
             <div className="table">
@@ -102,34 +81,34 @@ class Table extends React.Component {
                         <th scope="col">Sunday</th>
                     </tr>
                     <tr>
-                        {this.state.month.days.slice(0, 7).map((current) => <Cell cell={current}
-                                                                                  event={monthEvents[index++]}
-                                                                                  month={this.state.date.getMonth()}/>)}
+                        {this.state.month.days.slice(0, 7).map((cell) => <Cell cell={cell}
+                                                                               event={monthEvents[index++]}
+                                                                               month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
-                        {this.state.month.days.slice(7, 14).map((current) => <Cell cell={current}
-                                                                                   event={monthEvents[index++]}
-                                                                                   month={this.state.date.getMonth()}/>)}
+                        {this.state.month.days.slice(7, 14).map((cell) => <Cell cell={cell}
+                                                                                event={monthEvents[index++]}
+                                                                                month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
-                        {this.state.month.days.slice(14, 21).map((current) => <Cell cell={current}
-                                                                                    event={monthEvents[index++]}
-                                                                                    month={this.state.date.getMonth()}/>)}
+                        {this.state.month.days.slice(14, 21).map((cell) => <Cell cell={cell}
+                                                                                 event={monthEvents[index++]}
+                                                                                 month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
-                        {this.state.month.days.slice(21, 28).map((current) => <Cell cell={current}
-                                                                                    event={monthEvents[index++]}
-                                                                                    month={this.state.date.getMonth()}/>)}
+                        {this.state.month.days.slice(21, 28).map((cell) => <Cell cell={cell}
+                                                                                 event={monthEvents[index++]}
+                                                                                 month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
-                        {this.state.month.days.slice(28, 35).map((current) => <Cell cell={current}
-                                                                                    event={monthEvents[index++]}
-                                                                                    month={this.state.date.getMonth()}/>)}
+                        {this.state.month.days.slice(28, 35).map((cell) => <Cell cell={cell}
+                                                                                 event={monthEvents[index++]}
+                                                                                 month={this.state.date.getMonth()}/>)}
                     </tr>
                     <tr>
-                        {this.state.month.days.slice(35, 42).map((current) => <Cell cell={current}
-                                                                                    event={monthEvents[index++]}
-                                                                                    month={this.state.date.getMonth()}/>)}
+                        {this.state.month.days.slice(35, 42).map((cell) => <Cell cell={cell}
+                                                                                 event={monthEvents[index++]}
+                                                                                 month={this.state.date.getMonth()}/>)}
                     </tr>
                 </table>
             </div>

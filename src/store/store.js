@@ -5,7 +5,6 @@ import { initialState } from '../reducers/reducer'
 const saveToLocalStorage = store => {
     localStorage.removeItem('storage')
     localStorage.setItem('storage', JSON.stringify(store))
-    console.log(store)
 }
 
 const store = createStore(rootReducer, initialState)

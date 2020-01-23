@@ -19,6 +19,16 @@ export function rootReducer (state = initialState, action) {
                 ...state,
                 events: [...state.events.filter(event => event.date !== action.date)]
             }
+        case UPDATE_EVENT:
+            return {
+                ...state,
+                events: state.events.map((event) => {
+                    if (new Date(JSON.parse(event.date)).toDateString() === new Date(JSON.parse(action.event.date)).toDateString()) {
+                        event.text = action.event.text
+                    }
+                    return event
+                })
+            }
         default:
             return state
     }
