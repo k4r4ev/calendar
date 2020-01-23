@@ -1,11 +1,14 @@
 import React from 'react'
 import Modal from './modal'
+import IconButton from '@material-ui/core/IconButton'
+import EditIcon from '@material-ui/icons/Edit'
 
 class Cell extends React.Component {
     constructor (props) {
         super(props)
         this.state = {
-            modal: ''
+            modal: '',
+            edit: ''
         }
     }
 
@@ -45,10 +48,29 @@ class Cell extends React.Component {
         this.setState({ modal: '' })
     }
 
+    showEditButton = () => {
+        this.setState({
+            edit: <IconButton className="edit" aria-label="add">
+                <EditIcon className="blackIcon" fontSize="small" onClick={this.showModal}/>
+            </IconButton>
+        })
+    }
+
+    hideEditButton = () => {
+        this.setState({
+            edit: ''
+        })
+    }
+
     render () {
         return (
-            <td className={this.getClass()}>
-                <div className="date" onClick={this.showModal}>{this.props.cell.date.getDate()}</div>
+            <td className={this.getClass()}
+                onMouseEnter={this.showEditButton}
+                onMouseLeave={this.hideEditButton}>
+                <div className="cell__header">
+                    <div className="date">{this.props.cell.date.getDate()}</div>
+                    {this.state.edit}
+                </div>
                 {this.getEvent()}
                 {this.state.modal}
             </td>

@@ -48,12 +48,12 @@ class Table extends React.Component {
 
     render () {
         let events = (this.props.events.filter(
-            (event) => new Date(JSON.parse(event.date)).getMonth() === this.state.date.getMonth()))
+            (event) => new Date(event.date).getMonth() === this.state.date.getMonth()))
         let monthEvents = []
         this.state.month.days.map((currentDay, index) => {
             monthEvents.push('')
             events.map((currentEvent) => {
-                if (new Date(JSON.parse(currentEvent.date)).toDateString() === currentDay.date.toDateString()) {
+                if (new Date(currentEvent.date).toDateString() === currentDay.date.toDateString()) {
                     monthEvents[index] = (currentEvent.text)
                 }
             })

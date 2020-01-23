@@ -21,18 +21,19 @@ class Modal extends React.Component {
         if (this.props.update === 0) {
             if (this.state.text.length !== 0) {
                 this.props.createEvent({
-                    date: JSON.stringify(new Date(this.props.date)),
+                    date: new Date(this.props.date),
                     text: this.state.text
                 })
             }
         } else {
-            this.props.updateEvent({date: JSON.stringify(new Date(this.props.date)), text: this.state.text})
+            this.props.updateEvent({date: new Date(this.props.date), text: this.state.text})
         }
         this.props.hide()
     }
 
     delete = () => {
-        this.props.deleteEvent(JSON.stringify(new Date(this.props.date)))
+        console.log(new Date(this.props.date).toDateString())
+        this.props.deleteEvent(new Date(this.props.date).toDateString())
         this.props.hide()
     }
 
