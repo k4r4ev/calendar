@@ -33,7 +33,7 @@ body {
     grid-template-columns: repeat(7, 1fr);
 }
 
-.calendar tr, #calendar tbody {
+.calendar tr, .calendar tbody {
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -80,12 +80,9 @@ caption {
     flex-direction: column;
 }
 
-.calendar .days li:hover {
-    background: #d3d3d3;
-}
-
 .calendar .date {
     text-align: center;
+    align-self: flex-start;
     padding: 4px;
     background: #333;
     color: #fff;
@@ -124,6 +121,7 @@ caption {
     width: 45px;
     background: #333;
     color: #fff;
+    align-self: flex-start;
 }
 
 
