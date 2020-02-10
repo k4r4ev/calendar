@@ -50,8 +50,8 @@ class Cell extends React.Component {
 
     showEditButton = () => {
         this.setState({
-            edit: <IconButton className="edit" aria-label="add">
-                <EditIcon className="blackIcon" fontSize="small" onClick={this.showModal}/>
+            edit: <IconButton className="edit" aria-label="add" onClick={this.showModal}>
+                <EditIcon className="blackIcon" fontSize="small"/>
             </IconButton>
         })
     }
