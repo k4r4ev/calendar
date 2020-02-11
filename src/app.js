@@ -1,19 +1,20 @@
 import React from 'react'
-import Header from './components/header'
-import Table from './components/table'
 import { Provider } from 'react-redux'
+import { Redirect, Route } from 'react-router'
+import { BrowserRouter } from 'react-router-dom'
 import store from './store/store'
 import './stylesheets/app.css'
+import Body from './components/body'
 
 class App extends React.Component {
     render () {
         return (
-            <Provider store={store}>
-                <div>
-                    <Header/>
-                    <Table/>
-                </div>
-            </Provider>
+            <BrowserRouter>
+                <Provider store={store}>
+                    <Route exact path="/month" component={Body}/>
+                    <Redirect to="/month"/>
+                </Provider>
+            </BrowserRouter>
         )
     }
 }

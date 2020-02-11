@@ -40,7 +40,8 @@ class Cell extends React.Component {
 
     showModal = () => {
         this.setState({
-            modal: <Modal hide={this.hideModal} date={this.props.cell.date} update={this.updateOrCreate()}/>
+            modal: <Modal hide={this.hideModal} date={this.props.cell.date} update={this.updateOrCreate()}
+            event={this.props.event}/>
         })
     }
 

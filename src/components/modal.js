@@ -26,7 +26,10 @@ class Modal extends React.Component {
                 })
             }
         } else {
-            this.props.updateEvent({date: new Date(this.props.date), text: this.state.text})
+            this.props.updateEvent({
+                date: new Date(this.props.date),
+                text: this.state.text
+            })
         }
         this.props.hide()
     }
@@ -47,16 +50,17 @@ class Modal extends React.Component {
                 <div className="title">
                     {this.props.date.getDate() + ' ' + this.months[this.props.date.getMonth()]}
                 </div>
-                <textarea className="textarea" onChange={this.handleChangeEventText}/>
+                <textarea className="textarea" onChange={this.handleChangeEventText} autoFocus={true}
+                          defaultValue={this.props.event}/>
                 <div className="footer">
-                    <IconButton aria-label="check" color="primary">
-                        <CheckIcon fontSize="large" className="whiteIcon" onClick={this.save}/>
+                    <IconButton aria-label="check" color="primary" onClick={this.save}>
+                        <CheckIcon fontSize="large" className="whiteIcon"/>
                     </IconButton>
-                    <IconButton aria-label="delete" color="primary">
-                        <DeleteIcon fontSize="large" className="whiteIcon" onClick={this.delete}/>
+                    <IconButton aria-label="delete" color="primary" onClick={this.delete}>
+                        <DeleteIcon fontSize="large" className="whiteIcon"/>
                     </IconButton>
-                    <IconButton aria-label="close" color="primary">
-                        <CloseIcon fontSize="large" className="whiteIcon" onClick={this.props.hide}/>
+                    <IconButton aria-label="close" color="primary" onClick={this.props.hide}>
+                        <CloseIcon fontSize="large" className="whiteIcon"/>
                     </IconButton>
                 </div>
             </div>
