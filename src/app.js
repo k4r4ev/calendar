@@ -3,15 +3,14 @@ import { Provider } from 'react-redux'
 import { Redirect, Route } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import store from './store/store'
-import './stylesheets/app.css'
-import Body from './components/body'
+import Table from './components/table'
 
 class App extends React.Component {
     render () {
         return (
             <BrowserRouter>
                 <Provider store={store}>
-                    <Route exact path="/month" component={Body}/>
+                    <Route exact path="/month" component={Table}/>
                     <Redirect to="/month"/>
                 </Provider>
             </BrowserRouter>

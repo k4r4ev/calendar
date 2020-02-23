@@ -5,20 +5,6 @@ body {
     background-color: lightblue;
 }
 
-.header {
-    background-color: lightcoral;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: row;
-}
-
-.select {
-    width: 300px;
-}
-
 .whiteIcon {
     color: white;
 }
@@ -69,7 +55,7 @@ caption {
 }
 
 .calendar .weekdays {
-    background-color: lightgreen;
+    background-color: #ff8b8b;
 }
 
 .calendar .weekdays th {

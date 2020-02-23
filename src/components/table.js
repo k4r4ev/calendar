@@ -6,6 +6,7 @@ import Cell from './cell'
 import Month from '../classes/month'
 import { connect } from 'react-redux'
 import { createEvent } from '../actions/actions'
+import '../stylesheets/table.css'
 
 class Table extends React.Component {
     constructor (props) {
