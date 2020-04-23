@@ -1,5 +1,11 @@
 class Month {
-    constructor (date) {
+    days: Array<Object>
+    date: Date
+    lastDateOfMonth : number
+    lastDayOfMonth : number
+    firstDayOfMonth : number
+
+    constructor (date: Date) {
         this.days = []
         this.date = date
         this.lastDateOfMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDate()
