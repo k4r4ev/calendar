@@ -1,5 +1,5 @@
 class Month {
-    days: Array<Object>
+    days: Array<{date: Date}>
     date: Date
     lastDateOfMonth : number
     lastDayOfMonth : number

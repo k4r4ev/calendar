@@ -3,12 +3,23 @@ import Modal from './modal'
 import IconButton from '@material-ui/core/IconButton'
 import EditIcon from '@material-ui/icons/Edit'
 
-class Cell extends React.Component {
-    constructor (props) {
+interface Props {
+    event: String,
+    cell: {date: Date},
+    month: Number
+}
+
+interface CellState {
+    modal?: JSX.Element,
+    edit?: JSX.Element
+}
+
+class Cell extends React.Component <Props, CellState> {
+    constructor (props: Props) {
         super(props)
         this.state = {
-            modal: '',
-            edit: ''
+            modal: <span/>,
+            edit: <span/>
         }
     }
 
@@ -46,7 +57,7 @@ class Cell extends React.Component {
     }
 
     hideModal = () => {
-        this.setState({ modal: '' })
+        this.setState({ modal: <span/> })
     }
 
     showEditButton = () => {
@@ -59,7 +70,7 @@ class Cell extends React.Component {
 
     hideEditButton = () => {
         this.setState({
-            edit: ''
+            edit: <span/>
         })
     }
 
