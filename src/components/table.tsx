@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
+import React from 'react'
 import IconButton from '@material-ui/core/IconButton'
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight'
 import Cell from './cell'
 import Month from '../classes/month'
-import {connect, ConnectedProps, useDispatch} from 'react-redux'
-import {createEvent} from '../actions/actions'
+import { connect } from 'react-redux'
+import { createEvent } from '../actions/actions'
 import '../stylesheets/table.css'
 
 interface State {
@@ -13,13 +13,11 @@ interface State {
     month: Month
 }
 
-type PropsFromRedux = ConnectedProps<typeof connect>
-
-type Props = PropsFromRedux & {
-    events: Array<{date: Date, text: String}>
+interface Props {
+    events: Array<{ date: Date, text: String }>
 }
 
-class Table extends React.Component <Props, State> {
+class Table extends React.Component<Props, State> {
     months: Array<String>
     month: Object
     title: String
@@ -63,11 +61,10 @@ class Table extends React.Component <Props, State> {
     }
 
     render() {
-        // @ts-ignore
-        let events: Array<{date: Date, text: String}> = (this.props.events.filter(
-            (event: {date: Date, text: String}) => new Date(event.date).getMonth() === this.state.date.getMonth()))
+        let events: Array<{ date: Date, text: String }> = (this.props.events.filter(
+            (event: { date: Date, text: String }) => new Date(event.date).getMonth() === this.state.date.getMonth()))
         let monthEvents: Array<String> = []
-        this.state.month.days.map((currentDay: {date: Date}, index: number) => {
+        this.state.month.days.map((currentDay: { date: Date }, index: number) => {
             monthEvents.push('')
             events.map((currentEvent: any) => {
                 if (new Date(currentEvent.date).toDateString() === currentDay.date.toDateString()) {
@@ -83,67 +80,67 @@ class Table extends React.Component <Props, State> {
                 <table className="calendar">
                     <caption>
                         <IconButton aria-label="add" onClick={this.previousMonth}>
-                            <ArrowLeftIcon className="blackIcon" fontSize="large"/>
+                            <ArrowLeftIcon className="blackIcon" fontSize="large" />
                         </IconButton>
                         <span className="monthName">
                             {this.months[this.state.date.getMonth()] + ' ' + this.state.date.getFullYear()}
                         </span>
                         <IconButton aria-label="add" onClick={this.nextMonth}>
-                            <ArrowRightIcon className="blackIcon" fontSize="large"/>
+                            <ArrowRightIcon className="blackIcon" fontSize="large" />
                         </IconButton>
                     </caption>
                     <tbody>
-                    <tr className="weekdays">
-                        <th scope="col">Monday</th>
-                        <th scope="col">Tuesday</th>
-                        <th scope="col">Wednesday</th>
-                        <th scope="col">Thursday</th>
-                        <th scope="col">Friday</th>
-                        <th scope="col">Saturday</th>
-                        <th scope="col">Sunday</th>
-                    </tr>
-                    <tr>
-                        {this.state.month.days.slice(0, 7).map((cell: any) =>
-                            <React.Fragment key={index}><Cell cell={cell}
-                                                              event={monthEvents[index++]}
-                                                              month={this.state.date.getMonth()}/>
-                            </React.Fragment>)}
-                    </tr>
-                    <tr>
-                        {this.state.month.days.slice(7, 14).map((cell: any) =>
-                            <React.Fragment key={index}><Cell cell={cell}
-                                                              event={monthEvents[index++]}
-                                                              month={this.state.date.getMonth()}/>
-                            </React.Fragment>)}
-                    </tr>
-                    <tr>
-                        {this.state.month.days.slice(14, 21).map((cell: any) =>
-                            <React.Fragment key={index}><Cell cell={cell}
-                                                              event={monthEvents[index++]}
-                                                              month={this.state.date.getMonth()}/>
-                            </React.Fragment>)}
-                    </tr>
-                    <tr>
-                        {this.state.month.days.slice(21, 28).map((cell: any) =>
-                            <React.Fragment key={index}><Cell cell={cell}
-                                                              event={monthEvents[index++]}
-                                                              month={this.state.date.getMonth()}/>
-                            </React.Fragment>)}
-                    </tr>
-                    <tr>
-                        {this.state.month.days.slice(28, 35).map((cell: any) =>
-                            <React.Fragment key={index}><Cell cell={cell}
-                                                              event={monthEvents[index++]}
-                                                              month={this.state.date.getMonth()}/>
-                            </React.Fragment>)}
-                    </tr>
-                    <tr>
-                        {this.state.month.days.slice(35, 42).map((cell: any) =>
-                            <React.Fragment key={index}><Cell cell={cell}
-                                                              event={monthEvents[index++]}
-                                                              month={this.state.date.getMonth()}/>
-                            </React.Fragment>)}
-                    </tr>
+                        <tr className="weekdays">
+                            <th scope="col">Monday</th>
+                            <th scope="col">Tuesday</th>
+                            <th scope="col">Wednesday</th>
+                            <th scope="col">Thursday</th>
+                            <th scope="col">Friday</th>
+                            <th scope="col">Saturday</th>
+                            <th scope="col">Sunday</th>
+                        </tr>
+                        <tr>
+                            {this.state.month.days.slice(0, 7).map((cell: any) =>
+                                <React.Fragment key={index}><Cell cell={cell}
+                                    event={monthEvents[index++]}
+                                    month={this.state.date.getMonth()} />
+                                </React.Fragment>)}
+                        </tr>
+                        <tr>
+                            {this.state.month.days.slice(7, 14).map((cell: any) =>
+                                <React.Fragment key={index}><Cell cell={cell}
+                                    event={monthEvents[index++]}
+                                    month={this.state.date.getMonth()} />
+                                </React.Fragment>)}
+                        </tr>
+                        <tr>
+                            {this.state.month.days.slice(14, 21).map((cell: any) =>
+                                <React.Fragment key={index}><Cell cell={cell}
+                                    event={monthEvents[index++]}
+                                    month={this.state.date.getMonth()} />
+                                </React.Fragment>)}
+                        </tr>
+                        <tr>
+                            {this.state.month.days.slice(21, 28).map((cell: any) =>
+                                <React.Fragment key={index}><Cell cell={cell}
+                                    event={monthEvents[index++]}
+                                    month={this.state.date.getMonth()} />
+                                </React.Fragment>)}
+                        </tr>
+                        <tr>
+                            {this.state.month.days.slice(28, 35).map((cell: any) =>
+                                <React.Fragment key={index}><Cell cell={cell}
+                                    event={monthEvents[index++]}
+                                    month={this.state.date.getMonth()} />
+                                </React.Fragment>)}
+                        </tr>
+                        <tr>
+                            {this.state.month.days.slice(35, 42).map((cell: any) =>
+                                <React.Fragment key={index}><Cell cell={cell}
+                                    event={monthEvents[index++]}
+                                    month={this.state.date.getMonth()} />
+                                </React.Fragment>)}
+                        </tr>
                     </tbody>
                 </table>
             </div>

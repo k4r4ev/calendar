@@ -5,7 +5,7 @@ import EditIcon from '@material-ui/icons/Edit'
 
 interface Props {
     event: String,
-    cell: {date: Date},
+    cell: { date: Date },
     month: Number
 }
 
@@ -14,12 +14,12 @@ interface CellState {
     edit?: JSX.Element
 }
 
-class Cell extends React.Component <Props, CellState> {
-    constructor (props: Props) {
+class Cell extends React.Component<Props, CellState> {
+    constructor(props: Props) {
         super(props)
         this.state = {
-            modal: <span/>,
-            edit: <span/>
+            modal: <span />,
+            edit: <span />
         }
     }
 
@@ -52,29 +52,29 @@ class Cell extends React.Component <Props, CellState> {
     showModal = () => {
         this.setState({
             modal: <Modal hide={this.hideModal} date={this.props.cell.date} update={this.updateOrCreate()}
-            event={this.props.event}/>
+                event={this.props.event} />
         })
     }
 
     hideModal = () => {
-        this.setState({ modal: <span/> })
+        this.setState({ modal: <span /> })
     }
 
     showEditButton = () => {
         this.setState({
             edit: <IconButton className="edit" aria-label="add" onClick={this.showModal}>
-                <EditIcon className="blackIcon" fontSize="small"/>
+                <EditIcon className="blackIcon" fontSize="small" />
             </IconButton>
         })
     }
 
     hideEditButton = () => {
         this.setState({
-            edit: <span/>
+            edit: <span />
         })
     }
 
-    render () {
+    render() {
         return (
             <td className={this.getClass()}
                 onMouseEnter={this.showEditButton}
