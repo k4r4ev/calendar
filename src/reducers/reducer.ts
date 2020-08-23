@@ -5,9 +5,18 @@ export const initialState = (localStorage.length === 0) ? {
         date: new Date(),
         text: 'Create first event!'
     }]
-} : (JSON.parse(localStorage.getItem('storage')))
+} : (JSON.parse(localStorage.getItem('storage') as any))
 
-export function rootReducer (state = initialState, action) {
+interface Action {
+    type: String,
+    date: String,
+    event: {
+        date: Date,
+        text: String
+    }
+}
+
+export function rootReducer (state = initialState, action: Action) {
     switch (action.type) {
         case CREATE_EVENT:
             return {
@@ -17,12 +26,12 @@ export function rootReducer (state = initialState, action) {
         case DELETE_EVENT:
             return {
                 ...state,
-                events: [...state.events.filter(event => new Date(event.date).toDateString() !== action.date)]
+                events: [...state.events.filter((event: any) => new Date(event.date).toDateString() !== action.date)]
             }
         case UPDATE_EVENT:
             return {
                 ...state,
-                events: state.events.map((event) => {
+                events: state.events.map((event: any) => {
                     if (new Date(event.date).toDateString() === new Date(action.event.date).toDateString()) {
                         event.text = action.event.text
                     }
