@@ -5,7 +5,7 @@ export const initialState = (localStorage.length === 0) ? {
         date: new Date(),
         text: 'Create first event!'
     }]
-} : (JSON.parse(localStorage.getItem('storage') as any))
+} : (JSON.parse(localStorage.getItem('storage') as string))
 
 interface Action {
     type: String,

@@ -2,7 +2,7 @@ import { createStore } from 'redux'
 import { rootReducer } from '../reducers/reducer'
 import { initialState } from '../reducers/reducer'
 
-const store: any = createStore(rootReducer, initialState)
+const store = createStore(rootReducer, initialState)
 
 const saveToLocalStorage = (store: any) => {
     localStorage.removeItem('storage')
