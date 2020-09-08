@@ -14,7 +14,8 @@
     "import",
     "node",
     "promise",
-    "standard"
+    "standard",
+    "prettier"
   ],
   "globals": {
     "document": "readonly",
